@@ -11,7 +11,7 @@ const getTableAndRow = (tables, teamToBeSearched, dom) => {
         !teamName.includes(`${teamToBeSearched} `)
       ) {
         result = { table: index, row: rowIndex };
-        return false;
+        return;
       }
     });
 

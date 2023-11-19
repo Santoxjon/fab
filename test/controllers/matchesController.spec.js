@@ -17,7 +17,7 @@ describe("Testing nextMatch endpoint", () => {
       });
   });
 
-  it('should return the expected result for team "jotake"', (done) => {
+  it("should return the expected result for team JOTAKE", (done) => {
     chai
       .request(app)
       .get("/matches/nextMatch")

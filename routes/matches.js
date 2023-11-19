@@ -9,7 +9,7 @@ const matchesController = require("../controllers/matchesController");
  *   get:
  *     description: Get the next match for a team
  *     parameters:
- *       - in: query parameter
+ *       - in: query
  *         name: teamName
  *         description: The name of the team
  *         required: true
