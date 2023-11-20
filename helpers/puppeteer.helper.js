@@ -1,20 +1,25 @@
-const puppeteer = require("puppeteer");
-const cheerio = require("cheerio");
+const puppeteer = require('puppeteer');
+const cheerio = require('cheerio');
 
 const getDom = (url) => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const browser = await puppeteer.launch({
-        headless: "new",
+  return new Promise((resolve, reject) => {
+    puppeteer
+      .launch({
+        headless: 'new',
+      })
+      .then((browser) => {
+        return browser.newPage();
+      })
+      .then((page) => {
+        return page.goto(url).then(() => page.content());
+      })
+      .then((html) => {
+        const dom = cheerio.load(html);
+        resolve(dom);
+      })
+      .catch((error) => {
+        reject(error);
       });
-      const page = await browser.newPage();
-      await page.goto(url);
-      const html = await page.content();
-      const dom = cheerio.load(html);
-      resolve(dom);
-    } catch (error) {
-      reject(error);
-    }
   });
 };
 

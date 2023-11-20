@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "start:dev": "nodemon ./bin/www",
-    "test": "cross-env NODE_ENV=test mocha test/**/*.js --exit --reporter nyan"
+    "test": "cross-env NODE_ENV=test mocha test/**/*.js --exit --reporter nyan",
+    "lint": "eslint ."
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
@@ -26,6 +27,13 @@
     "chai": "^4.3.10",
     "chai-http": "^4.4.0",
     "cross-env": "^7.0.3",
+    "eslint": "^8.54.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-n": "^16.3.1",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-promise": "^6.1.1",
     "mocha": "^10.2.0",
     "supertest": "^6.3.3"
   }
