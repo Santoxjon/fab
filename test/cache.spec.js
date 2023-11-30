@@ -4,16 +4,8 @@ const chai = require('chai');
 const expect = chai.expect;
 const assert = chai.assert;
 const cache = require('../config/cache');
-
-const nextMatchMock = {
-  local: 'JOTAKE',
-  visitor: 'CLOSNET.COM SAN PRUDENCIO B',
-  date: '19-11-2023',
-  hour: '17:45',
-  field: 'POL. IBAIONDO',
-  address: 'LANDABERDE, 31',
-  locality: 'VITORIA-GASTEIZ',
-};
+const { getDom } = require('../helpers/puppeteer.helper');
+require('dotenv').config();
 
 describe('Cache', () => {
   it('Should store an example object', () => {
@@ -28,21 +20,9 @@ describe('Cache', () => {
     const cachedData = cache.get('example');
     assert.isUndefined(cachedData);
   });
-
-  describe('nextMatch', () => {
-    it('Should store data in the cache for the next match of the team JOTAKE', () => {
-      cache.set('nextMatch:JOTAKE', nextMatchMock, 3600);
-      const cachedData = cache.get('nextMatch:JOTAKE');
-      expect(cachedData).to.be.an('object');
-      expect(cachedData).to.have.keys(
-        'local',
-        'visitor',
-        'date',
-        'hour',
-        'field',
-        'address',
-        'locality'
-      );
-    });
+  it('Cache next matches', async function () {
+    this.timeout(10000); // Timeout neccessary to wait for the puppeteer to load the page
+    const dom = await getDom(process.env.NEXT_MATCH_URL);
+    cache.set('matches:nextMatch', dom, process.env.CACHE_TTL);
   });
 });
