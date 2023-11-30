@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const cache = require('../config/cache');
 const matchesController = require('../controllers/matchesController');
 
 /**
@@ -38,19 +37,8 @@ router.get('/nextMatch', async (req, res, next) => {
   const teamName = req.query.teamName.toUpperCase();
 
   try {
-    const cachedData = cache.get(`nextMatch:${teamName}`);
-    if (cachedData) {
-      res.status(200).json({
-        status: 'success',
-        code: 200,
-        data: { nextMatch: cachedData },
-      });
-      return;
-    }
-
     matchesController.getNextMatch(teamName).then((nextMatch) => {
       if (nextMatch && !nextMatch.error) {
-        cache.set(`nextMatch:${teamName}`, nextMatch, 500);
         res.status(200).json({
           status: 'success',
           code: 200,

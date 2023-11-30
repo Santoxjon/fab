@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
+const cache = require('../config/cache');
 
 const getDom = (url) => {
   return new Promise((resolve, reject) => {
@@ -15,6 +16,7 @@ const getDom = (url) => {
       })
       .then((html) => {
         const dom = cheerio.load(html);
+        cache.set('matches:nextMatch', dom, process.env.CACHE_TTL);
         resolve(dom);
       })
       .catch((error) => {
