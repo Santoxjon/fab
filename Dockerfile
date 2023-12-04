@@ -2,7 +2,7 @@
 FROM node:20-alpine
 
 # Install Chromium for Puppeteer
-RUN RUN apk add --update chromium
+RUN apk add --update chromium
 
 # Remove cache
 RUN rm -rf /var/lib/apt/lists/* /var/cache/apt/*
