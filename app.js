@@ -90,7 +90,7 @@ app.use((req, res) => {
   });
 });
 
-scheduler.updateNextMatchCache();
-scheduler.dailyUpdate();
+// scheduler.updateNextMatchCache();
+// scheduler.dailyUpdate();
 
 module.exports = app;
