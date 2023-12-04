@@ -3,7 +3,6 @@ require('dotenv').config();
 
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const scheduler = require('./schedulers/nextMatch.scheduler');
 const fs = require('fs');
 const https = require('https');
 const debug = require('debug')('fab:server');
@@ -26,8 +25,8 @@ try {
 }
 
 const httpsServer = https.createServer(credentials, app);
-httpsServer.listen(443, () => {
-  console.log('HTTPS Server running on port 443');
+httpsServer.listen(3443, () => {
+  console.log('HTTPS Server running on port 3443');
 });
 const onListening = () => {
   const addr = httpsServer.address();

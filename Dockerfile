@@ -17,5 +17,6 @@ RUN npm i --production
 COPY . .
 
 EXPOSE 3000
+EXPOSE 3043
 
 CMD ["npm", "start"]
