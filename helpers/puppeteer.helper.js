@@ -7,7 +7,7 @@ const BROWSER_OPTIONS = {
   headless: 'new',
   ...(process.env.NODE_ENV === 'production' && {
     executablePath: '/usr/bin/chromium',
-    args:['--no-sandbox'],
+    args: ['--no-sandbox'],
   }),
 };
 
