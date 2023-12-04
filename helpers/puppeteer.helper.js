@@ -6,7 +6,8 @@ require('dotenv').config();
 const BROWSER_OPTIONS = {
   headless: 'new',
   ...(process.env.NODE_ENV === 'production' && {
-    executablePath: '/usr/bin/google-chrome',
+    executablePath: '/usr/bin/chromium',
+    args:['--no-sandbox'],
   }),
 };
 
