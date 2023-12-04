@@ -4,6 +4,9 @@ FROM node:20-alpine
 # Install Chromium for Puppeteer
 RUN apt update && apt install chromium -y
 
+# Remove cache
+RUN rm -rf /var/lib/apt/lists/* /var/cache/apt/*
+
 # WORKDIR
 WORKDIR /usr/src/app
 
